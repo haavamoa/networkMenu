@@ -3,6 +3,12 @@
 #It finds your standard gateway ip, public ip, isp.
 #It can also scan the most interesting ports on the network, check internet speed, fast access to traceroute, print out the Wifi network close to you and their channel and check the OS of devices connected to your network.
 
+# Find this devices ip address (alot of niz splitting here)
+a=$(nmcli dev list iface wlan0 | grep 'ip =');
+ipS=$(echo $a | awk -F',' '{print $1}')
+ipSS=$(echo $ipS | awk -F'/' '{print $1}')
+ip=$(echo $ipSS | awk -F'=' '{print $2}')
+
 #Find gateway ip address
 b=$(nmcli dev list iface wlan0 | grep IP4.DNS)
 gw=$(echo $b | awk -F':' '{print $2}')
@@ -14,7 +20,7 @@ dirString="$(readlink -f $0)"
 dir=$(echo $dirString | awk -F'networkMenu.sh' '{print $1}')
 
 #Find out what kind of  internet service provider that provides the internet
-ispString=$(timeout -sHUP 4s python $dir/speedtest-cli/speedtest_cli.py  | grep 'Testing from')
+ispString=$(timeout -sHUP 5s python $dir/speedtest-cli/speedtest_cli.py  | grep 'Testing from')
 ispAndIP=$(echo $ispString | awk -F'Testing from' '{print $2}')
 isp=$(echo $ispAndIP | awk -F'(' '{print $1}')
 
@@ -22,6 +28,7 @@ echo '
 \033[4m\033[1mN E T W O R K   M E N U:\033[0m
 
 \033[1mS E T T I N G S :\033[0m
+Device IP-Adress: \033[93m' $ip'\033[0m
 Standard Gateway IP-Address: \033[93m'$gw '\033[0m
 Public IP-Address: \033[93m' $pubip' \033[0m
 Internet Service Provider: \033[93m'$isp' \033[0m
