@@ -17,7 +17,7 @@ Its also designed to check nearby Wifi networks and their channels. This was to 
 #### Requirements
 * LINUX!
 * speedtest-cli - https://github.com/sivel/speedtest-cli. This has to be cloned inside /networkMenu/
-* Nmap.
+* Nmap
 * Python
 * iwlist
 * nmcli
