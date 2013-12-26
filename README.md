@@ -7,8 +7,11 @@ Its also designed to check nearby Wifi networks and their channels. This was to 
 It got extended with options like: 
 
 *Check the OS' of devices connected to the network.
+
 *Traceroute.
+
 *Scan the top 10 most interesting ports on the network.
+
 *Check internet download and upload speed.
 
 #### Requirements
