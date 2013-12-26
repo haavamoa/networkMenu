@@ -21,3 +21,6 @@ It got extended with options like:
 * Python
 * iwlist
 * nmcli
+
+#### Screenshot
+![ScreenShot](/networkMenu.png)
